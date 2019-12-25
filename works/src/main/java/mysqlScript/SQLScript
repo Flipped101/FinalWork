@@ -1,0 +1,196 @@
+-- auto-generated definition
+create table administrator
+(
+    id    bigint auto_increment
+        primary key,
+    no    varchar(255) not null,
+    name  varchar(255) not null,
+    phone varchar(11)  not null,
+    constraint administrator_no_uindex
+        unique (no),
+    constraint administrator_phone_uindex
+        unique (phone)
+);
+
+-- auto-generated definition
+create table administratoruser
+(
+    id               bigint auto_increment
+        primary key,
+    username         varchar(255)                        not null,
+    password         varchar(255)                        not null,
+    administrator_id bigint                              not null,
+    loginTime        timestamp default CURRENT_TIMESTAMP not null,
+    constraint administratorUser_username_uindex
+        unique (username),
+    constraint administratorUser_administrator_id_fk
+        foreign key (administrator_id) references administrator (id)
+);
+
+-- auto-generated definition
+create table degree
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(255) not null,
+    no          varchar(255) not null,
+    remarks     varchar(255) null,
+    constraint degree_no_uindex
+        unique (no)
+);
+
+-- auto-generated definition
+create table proftitle
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(255) not null,
+    no          varchar(255) not null,
+    remarks     varchar(255) null,
+    constraint proftitle_no_uindex
+        unique (no)
+);
+
+-- auto-generated definition
+create table school
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(255) not null,
+    no          varchar(255) not null,
+    remarks     varchar(255) null,
+    constraint school_no_uindex
+        unique (no)
+);
+
+-- auto-generated definition
+create table department
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(255) not null,
+    no          varchar(255) not null,
+    remarks     varchar(255) null,
+    school_id   bigint       not null,
+    constraint department_no_uindex
+        unique (no),
+    constraint department_school_id_fk
+        foreign key (school_id) references school (id)
+);
+
+-- auto-generated definition
+create table grade
+(
+    id            bigint auto_increment
+        primary key,
+    no            varchar(255) not null,
+    description   varchar(255) not null,
+    remarks       varchar(255) null,
+    department_id bigint       not null,
+    constraint grade_no_uindex
+        unique (no),
+    constraint grade_department_id_fk
+        foreign key (department_id) references department (id)
+);
+
+-- auto-generated definition
+create table teacher
+(
+    id            bigint auto_increment
+        primary key,
+    no            varchar(255) not null,
+    name          varchar(255) not null,
+    degree_id     bigint       not null,
+    department_id bigint       not null,
+    profTitle_id  bigint       not null,
+    phone         varchar(11)  not null,
+    constraint teacher_no_uindex
+        unique (no),
+    constraint teacher_phone_uindex
+        unique (phone),
+    constraint teacher_degree_id_fk
+        foreign key (degree_id) references degree (id),
+    constraint teacher_department_id_fk
+        foreign key (department_id) references department (id),
+    constraint teacher_proftitle_id_fk
+        foreign key (profTitle_id) references proftitle (id)
+);
+
+-- auto-generated definition
+create table course
+(
+    id          bigint auto_increment
+        primary key,
+    no          varchar(255) not null,
+    description varchar(255) not null,
+    credit      bigint       not null,
+    category    varchar(255) not null,
+    time        varchar(255) not null,
+    place       varchar(255) not null,
+    teacher_id  bigint       not null,
+    countNum    int          null,
+    constraint course_no_uindex
+        unique (no),
+    constraint course_teacher_id_fk
+        foreign key (teacher_id) references teacher (id)
+);
+
+-- auto-generated definition
+create table teacheruser
+(
+    id         bigint auto_increment
+        primary key,
+    username   varchar(255)                        not null,
+    password   varchar(255)                        not null,
+    teacher_id bigint                              not null,
+    loginTime  timestamp default CURRENT_TIMESTAMP not null,
+    constraint teacherUser_username_uindex
+        unique (username),
+    constraint teacherUser_teacher_id_fk
+        foreign key (teacher_id) references teacher (id)
+);
+
+-- auto-generated definition
+create table student
+(
+    id       bigint auto_increment
+        primary key,
+    no       varchar(255) not null,
+    name     varchar(255) not null,
+    phone    varchar(11)  not null,
+    grade_id bigint       not null,
+    constraint student_no_uindex
+        unique (no),
+    constraint student_phone_uindex
+        unique (phone),
+    constraint student_grade_id_fk
+        foreign key (grade_id) references grade (id)
+);
+
+-- auto-generated definition
+create table studentuser
+(
+    id         bigint auto_increment
+        primary key,
+    username   varchar(255)                        not null,
+    password   varchar(255)                        not null,
+    student_id bigint                              not null,
+    loginTime  timestamp default CURRENT_TIMESTAMP not null,
+    constraint studentUser_username_uindex
+        unique (username),
+    constraint studentUser_student_id_fk
+        foreign key (student_id) references student (id)
+);
+
+-- auto-generated definition
+create table sc
+(
+    student_id bigint not null,
+    course_id  bigint not null,
+    primary key (student_id, course_id),
+    constraint sc_course_id_fk
+        foreign key (course_id) references course (id),
+    constraint sc_student_id_fk
+        foreign key (student_id) references student (id)
+);
+
