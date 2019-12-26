@@ -7,14 +7,14 @@ import java.sql.*;
  */
 public final class JdbcHelper {
 
-    private static String url = "jdbc:mysql://localhost:3306/kcsj" +
+    private static String url = "jdbc:mysql://localhost:3306/xkxt" +
             "?useUnicode=true&characterEncoding=utf8" + //?后面是指定编码utf8
             "&serverTimezone=Asia/Shanghai";
 
     //用户名
     private static String user = "root";
     //用户密码
-    private static String password = "19990623";
+    private static String password = "201802104014";
 
     // 不允许创建本类对象
     private JdbcHelper() {
