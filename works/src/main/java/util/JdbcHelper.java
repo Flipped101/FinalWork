@@ -14,7 +14,7 @@ public final class JdbcHelper {
     //用户名
     private static String user = "root";
     //用户密码
-    private static String password = "201802104014";
+    private static String password = "518918";
 
     // 不允许创建本类对象
     private JdbcHelper() {
