@@ -28,7 +28,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<table class=\"pe\">\n<tr class=\"badge\">\n  <td >编号</td>\n  <td>{{administrator.no}}</td>\n</tr>\n  <tr class=\"badge1\">\n    <td>姓名</td>\n    <td>{{administrator.name}}</td>\n  </tr>\n\n  <tr class=\"badge\">\n    <td>姓名</td>\n    <td>{{administrator.name}}</td>\n  </tr>\n  <tr class=\"badge1\">\n    <td class=\"\">联系方式</td>\n    <td>{{administrator.phone}}</td>\n  </tr>\n</table><br>\n<button (click)=\"goBack()\">返回</button><br><br>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<table class=\"pe\">\n<tr class=\"badge\">\n  <td >编号</td>\n  <td>{{administrator.no}}</td>\n</tr>\n  <tr class=\"badge1\">\n    <td>姓名</td>\n    <td>{{administrator.name}}</td>\n  </tr>\n  <tr class=\"badge\">\n    <td class=\"\">联系方式</td>\n    <td>{{administrator.phone}}</td>\n  </tr>\n</table><br>\n<button (click)=\"goBack()\">返回</button><br><br>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator-user/administrator-user.component.html": 
@@ -39,7 +39,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<header>\n  <h1>选课系统 demo版</h1>\n  <p>👦🏼当前用户：{{administrator_name}} &nbsp;&nbsp;&nbsp;&nbsp; ⏰登录时间：{{administratorLoginTime}}</p>\n\n</header>\n<nav>\n  <a routerLink=\"/administratorIndex/administratorPerson\">个人信息</a>\n  <a routerLink=\"/administratorIndex/course\">课程信息</a>\n  <a routerLink=\"/administratorIndex/student\">学生信息</a>\n  <a routerLink=\"/administratorIndex/teacher\">教师信息</a>\n  <a routerLink=\"/administratorIndex/changeAdministrator/{{administrator_user_id}}\">密码修改</a>\n  <div>\n    <a (click)=\"logout()\">安全退出</a>\n  </div>\n</nav>\n\n<section>\n  <router-outlet></router-outlet>\n</section>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<header>\n  <h1>选课系统 demo版</h1>\n  <p>👦🏼当前用户：{{administrator_name}} &nbsp;&nbsp;&nbsp;&nbsp; ⏰登录时间：{{administratorLoginTime}}</p>\n\n</header>\n<nav>\n  <a routerLink=\"/administratorIndex/administratorPerson\">个人信息</a>\n  <a routerLink=\"/administratorIndex/course\">课程信息</a>\n  <a routerLink=\"/administratorIndex/student\">学生信息</a>\n  <a routerLink=\"/administratorIndex/teacher\">教师信息</a>\n  <a routerLink=\"/administratorIndex/administrator\">管理员信息</a>\n  <a routerLink=\"/administratorIndex/changeAdministrator/{{administrator_user_id}}\">信息修改</a>\n  <div>\n    <a (click)=\"logout()\">安全退出</a>\n  </div>\n</nav>\n\n<section>\n  <router-outlet></router-outlet>\n</section>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator-user/change-administrator/change-administrator.component.html": 
@@ -50,7 +50,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user\" class=\"in\">\n  <h2>密码修改</h2><br>\n  <div>\n    <label>请输入旧密码:&nbsp; &nbsp; </label> <input #oldPassword>*<br>\n    <label>请输入新密码:&nbsp; &nbsp; </label> <input #newPassword>*<br>\n    <label>请再次输入新密码:&nbsp; &nbsp; </label> <input #renewPassword>*<br>\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save(oldPassword.value,newPassword.value,renewPassword.value)\">保存</button>\n</div>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user\" class=\"in\">\n  <h2>密码修改</h2><br>\n  <div>\n    <label>请输入旧密码:&nbsp; &nbsp; </label> <input #oldPassword>*<br>\n    <label>请输入新密码:&nbsp; &nbsp; </label> <input #newPassword>*<br>\n    <label>请再次输入新密码:&nbsp; &nbsp; </label> <input #renewPassword>*<br>\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save(oldPassword.value,newPassword.value,renewPassword.value)\">保存</button>\n</div><br>\n\n<div *ngIf=\"administrator\"  class=\"in\">\n  <h2>个人信息修改</h2><br>\n  <div><span>序&nbsp;&nbsp;号:&nbsp; </span>{{administrator.id}}</div>\n  <div>\n    <label>管理员编号:&nbsp; </label>{{administrator.no}}<br>\n    <label>管理员姓名:&nbsp; </label>{{administrator.name}}<br>\n    <label>联系方式:&nbsp; </label> <input [(ngModel)]=\"administrator.phone\">\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save2()\">保存</button>\n</div>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator-user/list-student-ad/list-student-ad.component.html": 
@@ -62,6 +62,39 @@
             "use strict";
             __webpack_require__.r(__webpack_exports__);
             /* harmony default export */ __webpack_exports__["default"] = ("<table class=\"tablelist\">\n  <tr><th>序号</th><th>学号</th><th>学生姓名</th><th>联系方式</th><th>班级</th><th>系</th><th>学院</th></tr>\n  <tr *ngFor=\"let elective of dataShow; let i=index;\" class=\"badge\">\n    <td>{{i+1+(currentPag-1)*pagNums}}</td>\n    <td>{{elective.student.no}}</td>\n    <td>{{elective.student.name}}</td>\n    <td>{{elective.student.phone}}</td>\n    <td>{{elective.student.grade.description}}</td>\n    <td>{{elective.student.grade.department.description}}</td>\n    <td>{{elective.student.grade.department.school.description}}</td>\n  </tr>\n  <tr><td colspan=\"6\"> <app-page  [leng]=\"leng\" (currentPag)=\"currentPagHandel($event)\" (pagNums)=\"pagNumsHandel($event)\"> </app-page></td></tr>\n</table><br>\n<button (click)=\"goBack()\">返回</button>\n");
+            /***/ 
+        }),
+        /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/add/administrator-add.component.html": 
+        /*!**********************************************************************************************************!*\
+          !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/add/administrator-add.component.html ***!
+          \**********************************************************************************************************/
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"in\">\n  <h2>添加新管理员</h2>\n  <span>请输入以下信息：&nbsp; </span><br>\n  <label>编号:&nbsp;</label> <input #administratorNo/>*<br>\n  <label>姓名:&nbsp;</label> <input #administratorName/>*<br>\n  <label>联系方式:&nbsp;</label> <input #administratorPhone/>*<br>\n\n</div>\n<button (click)=\"goBack()\">返回</button>\n<button (click)=\"save(administratorNo.value,administratorName.value,administratorPhone.value)\">保存</button>\n");
+            /***/ 
+        }),
+        /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/administrator.component.html": 
+        /*!**************************************************************************************************!*\
+          !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/administrator.component.html ***!
+          \**************************************************************************************************/
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ("<a routerLink=\"/administratorIndex/administrator-add\"><button > 添加管理员</button></a>\n<table class=\"tablelist\">\n  <tr><th>序号</th><th>编号</th><th>姓名</th><th>联系方式</th><th>操作</th></tr>\n  <tr *ngFor=\"let administrator of dataShow; let i=index;\" class=\"badge\">\n    <td>{{i+1+(currentPag-1)*pagNums}}</td>\n    <td>{{administrator.no}}</td>\n    <td>{{administrator.name}}</td>\n    <td>{{administrator.phone}}</td>\n    <td> <a routerLink=\"/administratorIndex/administrator-update/{{administrator.id}}\"><button>修改</button></a>\n      <button (click)=\"delete(administrator)\">删除</button></td>\n  </tr>\n  <tr><td colspan=\"6\"> <app-page  [leng]=\"leng\" (currentPag)=\"currentPagHandel($event)\" (pagNums)=\"pagNumsHandel($event)\"> </app-page></td></tr>\n</table>\n");
+            /***/ 
+        }),
+        /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/update/administrator-update.component.html": 
+        /*!****************************************************************************************************************!*\
+          !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/update/administrator-update.component.html ***!
+          \****************************************************************************************************************/
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"administrator\"  class=\"in\">\n  <h2>管理员信息修改</h2><br>\n  <div><span>序&nbsp;&nbsp;号:&nbsp; </span>{{administrator.id}}</div>\n  <div>\n    <label>管理员编号:&nbsp; </label> <input [(ngModel)]=\"administrator.no\" /><br>\n    <label>管理员姓名:&nbsp; </label> <input [(ngModel)]=\"administrator.name\"/><br>\n    <label>联系方式:&nbsp; </label> <input [(ngModel)]=\"administrator.phone\" />\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save()\">保存</button>\n</div>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html": 
@@ -138,7 +171,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user\" class=\"in\">\n  <h2>密码修改</h2><br>\n  <div>\n    <label>请输入旧密码:&nbsp; &nbsp; </label> <input #oldPassword>*<br>\n    <label>请输入新密码:&nbsp; &nbsp; </label> <input #newPassword>*<br>\n    <label>请再次输入新密码:&nbsp; &nbsp; </label> <input #renewPassword>*<br>\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save(oldPassword.value,newPassword.value,renewPassword.value)\">保存</button>\n</div>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user\" class=\"in\">\n  <h2>密码修改</h2><br>\n  <div>\n    <label>请输入旧密码:&nbsp; &nbsp; </label> <input #oldPassword>*<br>\n    <label>请输入新密码:&nbsp; &nbsp; </label> <input #newPassword>*<br>\n    <label>请再次输入新密码:&nbsp; &nbsp; </label> <input #renewPassword>*<br>\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save(oldPassword.value,newPassword.value,renewPassword.value)\">保存</button>\n</div><br>\n\n<div *ngIf=\"user\" class=\"in\">\n  <h2>个人信息修改</h2><br>\n  <div><span>序&nbsp;&nbsp;号:&nbsp; </span>{{student.id}}</div>\n  <div>\n    <label>学号:&nbsp; </label> {{student.no}}<br>\n    <label>学生名称:&nbsp; </label>{{student.name}} <br>\n    <label>联系方式:&nbsp; </label> <input [(ngModel)]=\"student.phone\"/><br>\n    <label>所属学院:&nbsp;</label>{{student.grade.department.school.description}}<br>\n    <label>所属专业:&nbsp;</label>{{student.grade.department.description}}<br>\n    <label>所属班级:&nbsp;</label>{{student.grade.description}}<br>\n  </div><br>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save2()\">保存</button>\n</div>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/student-user/check/check.component.html": 
@@ -182,7 +215,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<header>\n  <h1>选课系统 demo版</h1>\n  <p>👦🏼当前用户：{{student_name}} &nbsp;&nbsp;&nbsp;&nbsp; ⏰登录时间：{{studentLoginTime}}</p>\n\n</header>\n<nav>\n  <a routerLink=\"/studentIndex/studentPerson\">个人信息</a>\n  <a routerLink=\"/studentIndex/elective\">选课中心</a>\n  <a routerLink=\"/studentIndex/check\">历史选课</a>\n  <a routerLink=\"/studentIndex/changeStudent/{{student_user_id}}\">密码修改</a>\n\n  <div>\n    <a (click)=\"logout()\">安全退出</a>\n  </div>\n</nav>\n\n<section><router-outlet></router-outlet></section>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<header>\n  <h1>选课系统 demo版</h1>\n  <p>👦🏼当前用户：{{student_name}} &nbsp;&nbsp;&nbsp;&nbsp; ⏰登录时间：{{studentLoginTime}}</p>\n\n</header>\n<nav>\n  <a routerLink=\"/studentIndex/studentPerson\">个人信息</a>\n  <a routerLink=\"/studentIndex/elective\">选课中心</a>\n  <a routerLink=\"/studentIndex/check\">历史选课</a>\n  <a routerLink=\"/studentIndex/changeStudent/{{student_user_id}}\">信息修改</a>\n\n  <div>\n    <a (click)=\"logout()\">安全退出</a>\n  </div>\n</nav>\n\n<section><router-outlet></router-outlet></section>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/student/add/student-add.component.html": 
@@ -193,7 +226,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"in\">\n  <h2>添加新学生</h2>\n  <span>请输入以下信息：&nbsp; </span><br>\n  <label>学号:&nbsp;</label> <input #teacherNo/>*<br>\n  <label>学生姓名:&nbsp;</label> <input #teacherName/>*<br>\n  <label>联系方式:&nbsp;</label> <input #teacherPhone/>*<br>\n\n  <label>所属学院:&nbsp;</label>\n  <select [(ngModel)]=\"this.school\" [compareWith]=\"compareFn\"\n          (change)=\"getDepartmentBySchool(school.id)\">\n    <option value=\"\" selected = \"selected\">--请选择--</option>\n    <!--ngValue支持对象，value仅支持字符串-->\n    <option *ngFor=\"let school of schools\" [ngValue]=\"school\">{{school.description}}</option>\n  </select>*<br>\n\n  <label>所属系:&nbsp;</label>\n  <select [(ngModel)]=\"this.department\" [compareWith]=\"compareFn\"\n          (change)=\"getGradeByDepartment(this.department.id)\">\n    <option value=\"\" selected = \"selected\">--请选择--</option>\n    <!--ngValue支持对象，value仅支持字符串-->\n    <option *ngFor=\"let department of departments\" [ngValue]=\"department\">{{department.description}}</option>\n  </select>*<br>\n\n  <label>所属班级:&nbsp;</label>\n  <select [(ngModel)]=\"this.grade\" [compareWith]=\"compareFn\">\n    <option value=\"\" selected = \"selected\">--请选择--</option>\n    <!--ngValue支持对象，value仅支持字符串-->\n    <option *ngFor=\"let grade of grades\" [ngValue]=\"grade\">{{grade.description}}</option>\n  </select>*\n</div>\n<button (click)=\"goBack()\">返回</button>\n<button (click)=\"save(teacherNo.value,teacherName.value,teacherPhone.value,this.grade)\">保存</button>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"in\">\n  <h2>添加新学生</h2>\n  <span>请输入以下信息：&nbsp; </span><br>\n  <label>学号:&nbsp;</label> <input #studentNo/>*<br>\n  <label>学生姓名:&nbsp;</label> <input #studentName/>*<br>\n  <label>联系方式:&nbsp;</label> <input #studentPhone/>*<br>\n\n  <label>所属学院:&nbsp;</label>\n  <select [(ngModel)]=\"this.school\" [compareWith]=\"compareFn\"\n          (change)=\"getDepartmentBySchool(school.id)\">\n    <option value=\"\" selected = \"selected\">--请选择--</option>\n    <!--ngValue支持对象，value仅支持字符串-->\n    <option *ngFor=\"let school of schools\" [ngValue]=\"school\">{{school.description}}</option>\n  </select>*<br>\n\n  <label>所属系:&nbsp;</label>\n  <select [(ngModel)]=\"this.department\" [compareWith]=\"compareFn\"\n          (change)=\"getGradeByDepartment(this.department.id)\">\n    <option value=\"\" selected = \"selected\">--请选择--</option>\n    <!--ngValue支持对象，value仅支持字符串-->\n    <option *ngFor=\"let department of departments\" [ngValue]=\"department\">{{department.description}}</option>\n  </select>*<br>\n\n  <label>所属班级:&nbsp;</label>\n  <select [(ngModel)]=\"this.grade\" [compareWith]=\"compareFn\">\n    <option value=\"\" selected = \"selected\">--请选择--</option>\n    <!--ngValue支持对象，value仅支持字符串-->\n    <option *ngFor=\"let grade of grades\" [ngValue]=\"grade\">{{grade.description}}</option>\n  </select>*\n</div>\n<button (click)=\"goBack()\">返回</button>\n<button (click)=\"save(studentNo.value,studentName.value,studentPhone.value,this.grade)\">保存</button>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/student/student.component.html": 
@@ -226,7 +259,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user\" class=\"in\">\n  <h2>密码修改</h2><br>\n  <div>\n    <label>请输入旧密码:&nbsp; &nbsp; </label> <input #oldPassword>*<br>\n    <label>请输入新密码:&nbsp; &nbsp; </label> <input #newPassword>*<br>\n    <label>请再次输入新密码:&nbsp; &nbsp; </label> <input #renewPassword>*<br>\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save(oldPassword.value,newPassword.value,renewPassword.value)\">保存</button>\n</div>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"user\" class=\"in\">\n  <h2>密码修改</h2><br>\n  <div>\n    <label>请输入旧密码:&nbsp; &nbsp; </label> <input #oldPassword>*<br>\n    <label>请输入新密码:&nbsp; &nbsp; </label> <input #newPassword>*<br>\n    <label>请再次输入新密码:&nbsp; &nbsp; </label> <input #renewPassword>*<br>\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save(oldPassword.value,newPassword.value,renewPassword.value)\">保存</button>\n</div><br>\n\n\n<div *ngIf=\"user\" class=\"in\">\n  <h2>个人信息修改</h2><br>\n  <div>\n    <label>教师编号:&nbsp;</label> {{teacher.no}}<br>\n    <label>教师名称:&nbsp;</label> {{teacher.name}}<br>\n    <label>联系方式:&nbsp;</label> <input [(ngModel)]=\"teacher.phone\"/><br>\n    <label>职&nbsp;&nbsp;称:&nbsp;</label>{{teacher.title.description}}<br>\n    <label>学&nbsp;&nbsp;位:&nbsp;</label>{{teacher.degree.description}}<br>\n    <label>&nbsp;&nbsp;系:&nbsp;&nbsp;&nbsp;</label>{{teacher.department.description}}<br>\n\n  </div>\n  <button (click)=\"goBack()\">返回</button>\n  <button (click)=\"save2()\">保存</button>\n</div>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/teacher-user/course-teacher/course-teacher.component.html": 
@@ -270,7 +303,7 @@
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
             "use strict";
             __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<header>\n  <h1>选课系统 demo版</h1>\n  <p>👦🏼当前用户：{{teacher_name}} &nbsp;&nbsp;&nbsp;&nbsp; ⏰登录时间：{{teacherLoginTime}}</p>\n\n</header>\n<nav>\n\n  <a routerLink=\"/teacherIndex/teacherPerson\">个人信息</a>\n  <a routerLink=\"/teacherIndex/courseTeacher\">我的课程</a>\n  <a routerLink=\"/teacherIndex/changeTeacher/{{teacher_user_id}}\">密码修改</a>\n\n  <div>\n    <a (click)=\"logout()\">安全退出</a>\n  </div>\n</nav>\n\n<section>\n  <router-outlet></router-outlet>\n</section>\n");
+            /* harmony default export */ __webpack_exports__["default"] = ("<header>\n  <h1>选课系统 demo版</h1>\n  <p>👦🏼当前用户：{{teacher_name}} &nbsp;&nbsp;&nbsp;&nbsp; ⏰登录时间：{{teacherLoginTime}}</p>\n\n</header>\n<nav>\n\n  <a routerLink=\"/teacherIndex/teacherPerson\">个人信息</a>\n  <a routerLink=\"/teacherIndex/courseTeacher\">我的课程</a>\n  <a routerLink=\"/teacherIndex/changeTeacher/{{teacher_user_id}}\">信息修改</a>\n\n  <div>\n    <a (click)=\"logout()\">安全退出</a>\n  </div>\n</nav>\n\n<section>\n  <router-outlet></router-outlet>\n</section>\n");
             /***/ 
         }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/teacher/add/teacher-add.component.html": 
@@ -756,9 +789,11 @@
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
             /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
             /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+            /* harmony import */ var _administrator_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../administrator.service */ "./src/app/administrator.service.ts");
             var ChangeAdministratorComponent = /** @class */ (function () {
-                function ChangeAdministratorComponent(userService, location) {
+                function ChangeAdministratorComponent(userService, administratorService, location) {
                     this.userService = userService;
+                    this.administratorService = administratorService;
                     this.location = location;
                     // tslint:disable-next-line:variable-name
                     this.administrator_user_id = window.localStorage.getItem('administrator_user_id');
@@ -767,6 +802,10 @@
                     var _this = this;
                     this.userService.getUserAdministratorById(this.administrator_user_id)
                         .subscribe(function (res) { return _this.user = res; });
+                    // tslint:disable-next-line:variable-name
+                    var administrator_id = window.localStorage.getItem('administrator_id');
+                    this.administratorService.getAdministrator(administrator_id)
+                        .subscribe(function (res) { return _this.administrator = res; });
                 };
                 ChangeAdministratorComponent.prototype.goBack = function () {
                     this.location.back();
@@ -796,10 +835,16 @@
                         });
                     }
                 };
+                ChangeAdministratorComponent.prototype.save2 = function () {
+                    var _this = this;
+                    this.administratorService.updateAdministrator(this.administrator)
+                        .subscribe(function (res) { alert(res.message); _this.goBack(); });
+                };
                 return ChangeAdministratorComponent;
             }());
             ChangeAdministratorComponent.ctorParameters = function () { return [
                 { type: _user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] },
+                { type: _administrator_service__WEBPACK_IMPORTED_MODULE_4__["AdministratorService"] },
                 { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] }
             ]; };
             ChangeAdministratorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -965,6 +1010,229 @@
             ], AdministratorService);
             /***/ 
         }),
+        /***/ "./src/app/administrator/add/administrator-add.component.css": 
+        /*!*******************************************************************!*\
+          !*** ./src/app/administrator/add/administrator-add.component.css ***!
+          \*******************************************************************/
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXN0cmF0b3IvYWRkL2FkbWluaXN0cmF0b3ItYWRkLmNvbXBvbmVudC5jc3MifQ== */");
+            /***/ 
+        }),
+        /***/ "./src/app/administrator/add/administrator-add.component.ts": 
+        /*!******************************************************************!*\
+          !*** ./src/app/administrator/add/administrator-add.component.ts ***!
+          \******************************************************************/
+        /*! exports provided: AdministratorAddComponent */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdministratorAddComponent", function () { return AdministratorAddComponent; });
+            /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+            /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+            /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+            /* harmony import */ var _administrator_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../administrator.service */ "./src/app/administrator.service.ts");
+            /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+            var AdministratorAddComponent = /** @class */ (function () {
+                function AdministratorAddComponent(route, administratorService, location) {
+                    this.route = route;
+                    this.administratorService = administratorService;
+                    this.location = location;
+                }
+                AdministratorAddComponent.prototype.ngOnInit = function () {
+                };
+                AdministratorAddComponent.prototype.save = function (no, name, phone) {
+                    var _this = this;
+                    // tslint:disable-next-line:max-line-length
+                    this.administrator = { id: null, no: no.trim(), name: name.trim(), phone: phone.trim() };
+                    if (!no || !name || !phone) {
+                        return;
+                    }
+                    this.administratorService.addAdministrator(this.administrator)
+                        .subscribe(function (res) { alert(res.message); _this.goBack(); });
+                };
+                AdministratorAddComponent.prototype.goBack = function () {
+                    this.location.back();
+                };
+                return AdministratorAddComponent;
+            }());
+            AdministratorAddComponent.ctorParameters = function () { return [
+                { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+                { type: _administrator_service__WEBPACK_IMPORTED_MODULE_3__["AdministratorService"] },
+                { type: _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"] }
+            ]; };
+            AdministratorAddComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+                Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+                    selector: 'app-add',
+                    template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./administrator-add.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/add/administrator-add.component.html")).default,
+                    styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./administrator-add.component.css */ "./src/app/administrator/add/administrator-add.component.css")).default]
+                })
+            ], AdministratorAddComponent);
+            /***/ 
+        }),
+        /***/ "./src/app/administrator/administrator.component.css": 
+        /*!***********************************************************!*\
+          !*** ./src/app/administrator/administrator.component.css ***!
+          \***********************************************************/
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXN0cmF0b3IvYWRtaW5pc3RyYXRvci5jb21wb25lbnQuY3NzIn0= */");
+            /***/ 
+        }),
+        /***/ "./src/app/administrator/administrator.component.ts": 
+        /*!**********************************************************!*\
+          !*** ./src/app/administrator/administrator.component.ts ***!
+          \**********************************************************/
+        /*! exports provided: AdministratorComponent */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdministratorComponent", function () { return AdministratorComponent; });
+            /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+            /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+            /* harmony import */ var _administrator_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../administrator.service */ "./src/app/administrator.service.ts");
+            var AdministratorComponent = /** @class */ (function () {
+                function AdministratorComponent(administratorService) {
+                    this.administratorService = administratorService;
+                }
+                AdministratorComponent.prototype.ngOnInit = function () {
+                    this.getAdministrators();
+                };
+                // DoCheck 触发变更检测机制就是调用DoCheck钩子，目的是保证组件属性和浏览器的显示同步
+                AdministratorComponent.prototype.ngDoCheck = function () {
+                    if (this.currentPag !== this.oldCurrentPag || this.pagNums !== this.oldPagNums) {
+                        this.dataShow = [];
+                        var startNum = (this.currentPag - 1) * this.pagNums;
+                        for (var i = 0; i < this.pagNums; i++, startNum++) {
+                            if (this.administrators[startNum] !== null && this.administrators[startNum] !== undefined) {
+                                this.dataShow.push(this.administrators[startNum]);
+                            }
+                        }
+                        this.oldCurrentPag = this.currentPag;
+                        this.oldPagNums = this.pagNums;
+                    }
+                };
+                // 捕获当前显示页码函数
+                AdministratorComponent.prototype.currentPagHandel = function (pag) {
+                    this.currentPag = pag;
+                };
+                // 捕获每页显示数量行数
+                AdministratorComponent.prototype.pagNumsHandel = function (pagNum) {
+                    this.pagNums = pagNum;
+                };
+                // 获取所有Administrator数据
+                AdministratorComponent.prototype.getAdministrators = function () {
+                    var _this = this;
+                    this.administratorService.getAdministrators()
+                        .subscribe(function (res) {
+                        _this.administrators = res;
+                        _this.leng = res.length;
+                    });
+                };
+                AdministratorComponent.prototype.delete = function (administrator) {
+                    var _this = this;
+                    // tslint:disable-next-line:variable-name
+                    var confirm_ = confirm('确认删除?');
+                    if (confirm_) {
+                        this.administratorService.deleteAdministrator(administrator)
+                            .subscribe(function (res) {
+                            alert(res.message); // 弹出后台给的消息
+                            // 以下代码用于成果删除一行数据后页面内容刷新，并将页面保持在原页数位置不变。
+                            // if ( res.message === '删除成功') { //如果成功删除后后台返回的数据是‘删除成功’，可以去点这里的注释
+                            _this.administrators = _this.administrators.filter(function (h) { return h !== administrator; }); // 过滤掉已经被删除数据
+                            _this.dataShow = [];
+                            var startNum = (_this.currentPag - 1) * _this.pagNums;
+                            for (var i = 0; i < _this.pagNums; i++, startNum++) {
+                                if (_this.administrators[startNum] !== null && _this.administrators[startNum] !== undefined) {
+                                    _this.dataShow.push(_this.administrators[startNum]);
+                                }
+                            }
+                            _this.leng = _this.administrators.length;
+                        });
+                    }
+                    else {
+                        return;
+                    }
+                };
+                return AdministratorComponent;
+            }());
+            AdministratorComponent.ctorParameters = function () { return [
+                { type: _administrator_service__WEBPACK_IMPORTED_MODULE_2__["AdministratorService"] }
+            ]; };
+            AdministratorComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+                Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+                    selector: 'app-administrator',
+                    template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./administrator.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/administrator.component.html")).default,
+                    styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./administrator.component.css */ "./src/app/administrator/administrator.component.css")).default]
+                })
+            ], AdministratorComponent);
+            /***/ 
+        }),
+        /***/ "./src/app/administrator/update/administrator-update.component.css": 
+        /*!*************************************************************************!*\
+          !*** ./src/app/administrator/update/administrator-update.component.css ***!
+          \*************************************************************************/
+        /*! exports provided: default */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXN0cmF0b3IvdXBkYXRlL2FkbWluaXN0cmF0b3ItdXBkYXRlLmNvbXBvbmVudC5jc3MifQ== */");
+            /***/ 
+        }),
+        /***/ "./src/app/administrator/update/administrator-update.component.ts": 
+        /*!************************************************************************!*\
+          !*** ./src/app/administrator/update/administrator-update.component.ts ***!
+          \************************************************************************/
+        /*! exports provided: AdministratorUpdateComponent */
+        /***/ (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdministratorUpdateComponent", function () { return AdministratorUpdateComponent; });
+            /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+            /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+            /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+            /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+            /* harmony import */ var _administrator_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../administrator.service */ "./src/app/administrator.service.ts");
+            var AdministratorUpdateComponent = /** @class */ (function () {
+                function AdministratorUpdateComponent(route, administratorService, location) {
+                    this.route = route;
+                    this.administratorService = administratorService;
+                    this.location = location;
+                }
+                AdministratorUpdateComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    var id = this.route.snapshot.params.id;
+                    this.administratorService.getAdministrator(id)
+                        .subscribe(function (res) { return _this.administrator = res; });
+                };
+                AdministratorUpdateComponent.prototype.goBack = function () {
+                    this.location.back();
+                };
+                AdministratorUpdateComponent.prototype.save = function () {
+                    var _this = this;
+                    this.administratorService.updateAdministrator(this.administrator)
+                        .subscribe(function (res) { alert(res.message); _this.goBack(); });
+                };
+                return AdministratorUpdateComponent;
+            }());
+            AdministratorUpdateComponent.ctorParameters = function () { return [
+                { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+                { type: _administrator_service__WEBPACK_IMPORTED_MODULE_4__["AdministratorService"] },
+                { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] }
+            ]; };
+            AdministratorUpdateComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+                Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+                    selector: 'app-update',
+                    template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./administrator-update.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/administrator/update/administrator-update.component.html")).default,
+                    styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./administrator-update.component.css */ "./src/app/administrator/update/administrator-update.component.css")).default]
+                })
+            ], AdministratorUpdateComponent);
+            /***/ 
+        }),
         /***/ "./src/app/app-routing.module.ts": 
         /*!***************************************!*\
           !*** ./src/app/app-routing.module.ts ***!
@@ -1001,6 +1269,9 @@
             /* harmony import */ var _student_update_student_update_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./student/update/student-update.component */ "./src/app/student/update/student-update.component.ts");
             /* harmony import */ var _teacher_user_list_student_list_student_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./teacher-user/list-student/list-student.component */ "./src/app/teacher-user/list-student/list-student.component.ts");
             /* harmony import */ var _administrator_user_list_student_ad_list_student_ad_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./administrator-user/list-student-ad/list-student-ad.component */ "./src/app/administrator-user/list-student-ad/list-student-ad.component.ts");
+            /* harmony import */ var _administrator_administrator_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./administrator/administrator.component */ "./src/app/administrator/administrator.component.ts");
+            /* harmony import */ var _administrator_add_administrator_add_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./administrator/add/administrator-add.component */ "./src/app/administrator/add/administrator-add.component.ts");
+            /* harmony import */ var _administrator_update_administrator_update_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./administrator/update/administrator-update.component */ "./src/app/administrator/update/administrator-update.component.ts");
             var routes = [
                 { path: '', component: _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"], pathMatch: 'full' },
                 {
@@ -1018,6 +1289,9 @@
                         { path: 'teacher', component: _teacher_teacher_component__WEBPACK_IMPORTED_MODULE_3__["TeacherComponent"] },
                         { path: 'teacher-add', component: _teacher_add_teacher_add_component__WEBPACK_IMPORTED_MODULE_4__["TeacherAddComponent"] },
                         { path: 'teacher-update/:id', component: _teacher_update_teacher_update_component__WEBPACK_IMPORTED_MODULE_5__["TeacherUpdateComponent"] },
+                        { path: 'administrator', component: _administrator_administrator_component__WEBPACK_IMPORTED_MODULE_27__["AdministratorComponent"] },
+                        { path: 'administrator-add', component: _administrator_add_administrator_add_component__WEBPACK_IMPORTED_MODULE_28__["AdministratorAddComponent"] },
+                        { path: 'administrator-update/:id', component: _administrator_update_administrator_update_component__WEBPACK_IMPORTED_MODULE_29__["AdministratorUpdateComponent"] }
                     ]
                 },
                 {
@@ -1130,6 +1404,9 @@
             /* harmony import */ var _student_user_check_check_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./student-user/check/check.component */ "./src/app/student-user/check/check.component.ts");
             /* harmony import */ var _teacher_user_list_student_list_student_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./teacher-user/list-student/list-student.component */ "./src/app/teacher-user/list-student/list-student.component.ts");
             /* harmony import */ var _administrator_user_list_student_ad_list_student_ad_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./administrator-user/list-student-ad/list-student-ad.component */ "./src/app/administrator-user/list-student-ad/list-student-ad.component.ts");
+            /* harmony import */ var _administrator_administrator_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./administrator/administrator.component */ "./src/app/administrator/administrator.component.ts");
+            /* harmony import */ var _administrator_add_administrator_add_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./administrator/add/administrator-add.component */ "./src/app/administrator/add/administrator-add.component.ts");
+            /* harmony import */ var _administrator_update_administrator_update_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./administrator/update/administrator-update.component */ "./src/app/administrator/update/administrator-update.component.ts");
             var AppModule = /** @class */ (function () {
                 function AppModule() {
                 }
@@ -1163,7 +1440,10 @@
                         _student_user_elective_elective_component__WEBPACK_IMPORTED_MODULE_29__["ElectiveComponent"],
                         _student_user_check_check_component__WEBPACK_IMPORTED_MODULE_30__["CheckComponent"],
                         _teacher_user_list_student_list_student_component__WEBPACK_IMPORTED_MODULE_31__["ListStudentComponent"],
-                        _administrator_user_list_student_ad_list_student_ad_component__WEBPACK_IMPORTED_MODULE_32__["ListStudentAdComponent"]
+                        _administrator_user_list_student_ad_list_student_ad_component__WEBPACK_IMPORTED_MODULE_32__["ListStudentAdComponent"],
+                        _administrator_administrator_component__WEBPACK_IMPORTED_MODULE_33__["AdministratorComponent"],
+                        _administrator_add_administrator_add_component__WEBPACK_IMPORTED_MODULE_34__["AdministratorAddComponent"],
+                        _administrator_update_administrator_update_component__WEBPACK_IMPORTED_MODULE_35__["AdministratorUpdateComponent"]
                     ],
                     imports: [
                         _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
@@ -2278,9 +2558,11 @@
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
             /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
             /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+            /* harmony import */ var _student_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../student.service */ "./src/app/student.service.ts");
             var ChangeStudentComponent = /** @class */ (function () {
-                function ChangeStudentComponent(userService, location) {
+                function ChangeStudentComponent(userService, studentService, location) {
                     this.userService = userService;
+                    this.studentService = studentService;
                     this.location = location;
                     // tslint:disable-next-line:variable-name
                     this.student_user_id = window.localStorage.getItem('student_user_id');
@@ -2289,6 +2571,10 @@
                     var _this = this;
                     this.userService.getUserStudentById(this.student_user_id)
                         .subscribe(function (res) { return _this.user = res; });
+                    // tslint:disable-next-line:variable-name
+                    var student_id = window.localStorage.getItem('student_id');
+                    this.studentService.getStudent(student_id)
+                        .subscribe(function (res) { return _this.student = res; });
                 };
                 ChangeStudentComponent.prototype.goBack = function () {
                     this.location.back();
@@ -2318,10 +2604,19 @@
                         });
                     }
                 };
+                ChangeStudentComponent.prototype.save2 = function () {
+                    var _this = this;
+                    this.studentService.updateStudent(this.student)
+                        .subscribe(function (res) {
+                        alert(res.message);
+                        _this.goBack();
+                    });
+                };
                 return ChangeStudentComponent;
             }());
             ChangeStudentComponent.ctorParameters = function () { return [
                 { type: _user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] },
+                { type: _student_service__WEBPACK_IMPORTED_MODULE_4__["StudentService"] },
                 { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] }
             ]; };
             ChangeStudentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -3083,9 +3378,11 @@
             /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../user.service */ "./src/app/user.service.ts");
             /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
             /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+            /* harmony import */ var _teacher_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../teacher.service */ "./src/app/teacher.service.ts");
             var ChangeTeacherComponent = /** @class */ (function () {
-                function ChangeTeacherComponent(userService, router, location) {
+                function ChangeTeacherComponent(userService, teacherService, router, location) {
                     this.userService = userService;
+                    this.teacherService = teacherService;
                     this.router = router;
                     this.location = location;
                     // tslint:disable-next-line:variable-name
@@ -3095,6 +3392,8 @@
                     var _this = this;
                     // tslint:disable-next-line:variable-name
                     var teacher_id = window.localStorage.getItem('teacher_id');
+                    this.teacherService.getTeacher(teacher_id)
+                        .subscribe(function (res) { return _this.teacher = res; });
                     if (teacher_id === null) {
                         alert('请登录或重新登录!');
                         this.router.navigateByUrl('/');
@@ -3132,10 +3431,19 @@
                         });
                     }
                 };
+                ChangeTeacherComponent.prototype.save2 = function () {
+                    var _this = this;
+                    this.teacherService.updateTeacher(this.teacher)
+                        .subscribe(function (res) {
+                        alert(res.message);
+                        _this.goBack();
+                    });
+                };
                 return ChangeTeacherComponent;
             }());
             ChangeTeacherComponent.ctorParameters = function () { return [
                 { type: _user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"] },
+                { type: _teacher_service__WEBPACK_IMPORTED_MODULE_5__["TeacherService"] },
                 { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
                 { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] }
             ]; };
