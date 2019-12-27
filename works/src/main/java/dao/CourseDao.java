@@ -56,9 +56,9 @@ public final class CourseDao {
         //获得连接对象
         Connection connection = JdbcHelper.getConn();
         //创建Statement对象
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM COURSE where description =?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM COURSE where description like ?");
         //为预编译的语句参数赋值
-        preparedStatement.setString(1, des);
+        preparedStatement.setString(1, "%" + des + "%");
 
         //执行SQL查询语句并获得结果集对象（游标指向结果集的开头）
         ResultSet resultSet = preparedStatement.executeQuery();
