@@ -80,7 +80,7 @@ public class AdministratorController extends HttpServlet {
         if (deleted) {
             message.put("message", "删除成功!");
         } else {
-            message.put("message", "此条记录已被删除或不存在!");
+            message.put("message", "删除失败!");
         }
         //响应message到前端
         response.getWriter().println(message);
