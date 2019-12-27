@@ -104,6 +104,35 @@ public final class StudentDao {
         return students;
     }
 
+    public Collection<Student> findAllByNo(String no) throws SQLException {
+        //创建Student类型的集合对象
+        Set<Student> students = new TreeSet<>();
+        //加载驱动程序
+        //获得连接对象
+        Connection connection = JdbcHelper.getConn();
+        //创建sql语句，“？”作为占位符
+        String str = "SELECT * FROM STUDENT WHERE no = ?";
+        //创建PreparedStatement接口对象，包装编译后的目标代码（可以设置参数，安全性高）
+        PreparedStatement pstmt = connection.prepareStatement(str);
+        //为预编译的语句参数赋值
+        pstmt.setString(1, no);
+        //执行SQL查询语句并获得结果集对象（游标指向结果集的开头）
+        ResultSet resultSet = pstmt.executeQuery();
+        //若结果集仍然有下一条记录，则执行循环体
+        while (resultSet.next()) {
+            Grade grade = GradeService.getInstance().find(resultSet.getInt("grade_id"));
+            //创建Student对象，根据遍历结果中的id,name,no,phone值
+            Student student = new Student(resultSet.getInt("id"), resultSet.getString("name"),
+                    resultSet.getString("no"), resultSet.getString("phone"), grade);
+            //向departemnts集合中添加Student对象
+            students.add(student);
+        }
+        //若结果集仍然有下一条记录，则执行循环体
+        JdbcHelper.close(resultSet, pstmt, connection);
+        //返回students集合
+        return students;
+    }
+
     public boolean add(Student student) {
         //创建Connection类型变量
         Connection connection = null;

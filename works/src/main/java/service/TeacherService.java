@@ -17,13 +17,18 @@ public final class TeacherService {
     private TeacherService(){}
 
     //静态方法，返回本类的惟一对象
-    public static TeacherService getInstance(){
+    public static TeacherService getInstance() {
         return teacherService;
     }
 
     public Collection<Teacher> findAll() throws SQLException {
         //调用TeacherDao类里的findAll方法返回查找结果
         return teacherDao.findAll();
+    }
+
+    public Collection<Teacher> findAllByNo(String no) throws SQLException {
+        //调用TeacherDao类里的findAll方法返回查找结果
+        return teacherDao.findAllByNo(no);
     }
 
     public Teacher find(Integer id) throws SQLException {

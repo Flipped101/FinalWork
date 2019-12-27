@@ -26,9 +26,14 @@ public final class CourseService {
         return courseDao.findAll();
     }
 
-    public Collection<Course> findAllByTeacher(Integer teacher_id) throws SQLException{
+    public Collection<Course> findAllByTeacher(Integer teacher_id) throws SQLException {
         //调用CourseDao类里的findAllByTeacher方法返回查找结果
         return courseDao.findAllByTeacher(teacher_id);
+    }
+
+    public Collection<Course> findAllByDes(String des) throws SQLException {
+        //调用CourseDao类里的findAllByTeacher方法返回查找结果
+        return courseDao.findAllByDes(des);
     }
 
     public Course find(Integer id) throws SQLException {

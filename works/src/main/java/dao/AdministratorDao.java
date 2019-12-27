@@ -46,6 +46,35 @@ public final class AdministratorDao {
         return administrators;
     }
 
+    public Collection<Administrator> findAllByNo(String no) throws SQLException {
+        //创建Administrator类型的集合对象
+        Set<Administrator> administrators = new TreeSet<>();
+        //加载驱动程序
+        //获得连接对象
+        Connection connection = JdbcHelper.getConn();
+        //创建sql语句，“？”作为占位符
+        String str = "SELECT * FROM ADMINISTRATOR WHERE no = ?";
+        //创建PreparedStatement接口对象，包装编译后的目标代码（可以设置参数，安全性高）
+        PreparedStatement pstmt = connection.prepareStatement(str);
+        //为预编译的语句参数赋值
+        pstmt.setString(1, no);
+        //执行SQL查询语句并获得结果集对象（游标指向结果集的开头）
+        ResultSet resultSet = pstmt.executeQuery();
+        //若结果集仍然有下一条记录，则执行循环体
+        while (resultSet.next()) {
+            //创建Administrator对象，根据遍历结果中的id,name,no,phone值
+            Administrator administrator = new Administrator(resultSet.getInt("id"),
+                    resultSet.getString("name"), resultSet.getString("no"),
+                    resultSet.getString("phone"));
+            //向administrators集合中添加Administrator对象
+            administrators.add(administrator);
+        }
+        //关闭资源
+        JdbcHelper.close(resultSet, pstmt, connection);
+        //返回administrators集合
+        return administrators;
+    }
+
     public Administrator find(Integer id) throws SQLException {
         //创建Administrator类型变量
         Administrator administrator = null;

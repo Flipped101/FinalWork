@@ -49,6 +49,35 @@ public final class CourseDao {
         return courses;
     }
 
+    public Collection<Course> findAllByDes(String des) throws SQLException {
+        //创建Course类型的集合对象
+        Set<Course> courses = new TreeSet<>();
+        //加载驱动程序
+        //获得连接对象
+        Connection connection = JdbcHelper.getConn();
+        //创建Statement对象
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM COURSE where description =?");
+        //为预编译的语句参数赋值
+        preparedStatement.setString(1, des);
+
+        //执行SQL查询语句并获得结果集对象（游标指向结果集的开头）
+        ResultSet resultSet = preparedStatement.executeQuery();
+        //若结果集仍然有下一条记录，则执行循环体
+        while (resultSet.next()) {
+            Teacher teacher = TeacherService.getInstance().find(resultSet.getInt("teacher_id"));
+            //创建Course对象，根据遍历结果中的id,description,no,remarks值
+            Course course = new Course(resultSet.getInt("id"), resultSet.getString("description"),
+                    resultSet.getString("no"), resultSet.getInt("credit"), teacher, resultSet.getString("category"),
+                    resultSet.getString("time"), resultSet.getString("place"), resultSet.getInt("countNum"));
+            //向courses集合中添加Course对象
+            courses.add(course);
+        }
+        //关闭资源
+        JdbcHelper.close(resultSet, preparedStatement, connection);
+        //返回courses集合
+        return courses;
+    }
+
     public Course find(Integer id) throws SQLException {
         //创建Course类型变量
         Course course = null;

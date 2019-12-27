@@ -26,7 +26,7 @@ public final class ElectiveDao {
         return electiveDao;
     }
 
-    public Collection<Elective> findAll(int student_id) throws SQLException {
+    public Collection<Elective> findAllByStudent(int student_id) throws SQLException {
         //创建Elective类型的集合对象
         Set<Elective> electives = new HashSet<>();
         //加载驱动程序

@@ -53,7 +53,7 @@ public final class DegreeDao {
         //获得连接对象
         Connection connection = JdbcHelper.getConn();
         //创建sql语句，“？”作为占位符
-        String str = "SELECT * FROM DEGREE WHERE ID = ?";
+        String str = "SELECT * FROM DEGREE WHERE ID LIKE ?";
         //创建PreparedStatement接口对象，包装编译后的目标代码（可以设置参数，安全性高）
         PreparedStatement pstmt = connection.prepareStatement(str);
         //为预编译的语句参数赋值

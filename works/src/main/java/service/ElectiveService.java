@@ -26,7 +26,7 @@ public final class ElectiveService {
 
     public Collection<Elective> findAll(Integer student_id) throws SQLException {
         //调用ElectiveDao类里的findAll方法返回查找结果
-        return electiveDao.findAll(student_id);
+        return electiveDao.findAllByStudent(student_id);
     }
 
     public Collection<Elective> findAllByCourse(Integer student_id) throws SQLException {

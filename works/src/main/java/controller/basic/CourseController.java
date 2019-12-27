@@ -146,17 +146,20 @@ public class CourseController extends HttpServlet {
             throws ServletException, IOException {
         //读取参数id
         String id_str = request.getParameter("id");
+        String des_str = request.getParameter("des");
         String teacher_id_str = request.getParameter("teacher_id");
 
         //创建JSON对象message，以便往前端响应信息
         JSONObject message = new JSONObject();
         try {
             //如果id = null, 表示响应所有课程对象，否则响应id指定的课程对象
-            if (id_str == null && teacher_id_str == null) {
+            if (id_str == null && teacher_id_str == null && des_str == null) {
                 responseCourses(response);
             } else if (teacher_id_str != null) {
                 int teacher_id = Integer.parseInt(teacher_id_str);
                 responseCourseByTeacher(teacher_id, response);
+            } else if (des_str != null) {
+                responseCourseByDes(des_str, response);
             } else {
                 int id = Integer.parseInt(id_str);
                 responseCourse(id, response);
@@ -200,6 +203,16 @@ public class CourseController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         //获得对应的所有课程
         Collection<Course> courses = CourseService.getInstance().findAllByTeacher(teacher_id);
+        String courses_json = JSON.toJSONString(courses, SerializerFeature.DisableCircularReferenceDetect);
+
+        //响应courses_json到前端
+        response.getWriter().println(courses_json);
+    }
+
+    private void responseCourseByDes(String des, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        //获得对应的所有课程
+        Collection<Course> courses = CourseService.getInstance().findAllByDes(des);
         String courses_json = JSON.toJSONString(courses, SerializerFeature.DisableCircularReferenceDetect);
 
         //响应courses_json到前端

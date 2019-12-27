@@ -55,6 +55,38 @@ public final class TeacherDao {
         return teachers;
     }
 
+    public Collection<Teacher> findAllByNo(String no) throws SQLException {
+        //创建Teacher类型的集合对象
+        Set<Teacher> teachers = new TreeSet<>();
+        //加载驱动程序
+        //获得连接对象
+        Connection connection = JdbcHelper.getConn();
+        //创建sql语句，“？”作为占位符
+        String str = "SELECT * FROM TEACHER WHERE no = ?";
+        //创建PreparedStatement接口对象，包装编译后的目标代码（可以设置参数，安全性高）
+        PreparedStatement pstmt = connection.prepareStatement(str);
+        //为预编译的语句参数赋值
+        pstmt.setString(1, no);
+        //执行SQL查询语句并获得结果集对象（游标指向结果集的开头）
+        ResultSet resultSet = pstmt.executeQuery();
+        //若结果集仍然有下一条记录，则执行循环体
+        while (resultSet.next()) {
+            ProfTitle profTitle = ProfTitleService.getInstance().find(resultSet.getInt("profTitle_id"));
+            Degree degree = DegreeService.getInstance().find(resultSet.getInt("degree_id"));
+            Department department = DepartmentService.getInstance().find(resultSet.getInt("department_id"));
+            //创建Teacher对象，根据遍历结果中的id,profTitle,no,degree,department字段
+            Teacher teacher = new Teacher(resultSet.getInt("id"), resultSet.getString("no"),
+                    resultSet.getString("name"),
+                    profTitle, degree, department, resultSet.getString("phone"));
+            //向teachers集合中添加Teacher对象
+            teachers.add(teacher);
+        }
+        //关闭资源
+        JdbcHelper.close(resultSet, pstmt, connection);
+        //返回teachers集合
+        return teachers;
+    }
+
     public Teacher find(Integer id) throws SQLException {
         //创建Teacher类型变量
         Teacher teacher = null;

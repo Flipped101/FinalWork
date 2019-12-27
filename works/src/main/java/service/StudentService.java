@@ -26,9 +26,14 @@ public final class StudentService {
         return studentDao.findAll();
     }
 
-    public Collection<Student> findAllByGrade(Integer grade_id) throws SQLException{
+    public Collection<Student> findAllByGrade(Integer grade_id) throws SQLException {
         //调用StudentDao类里的findAllByGrade方法返回查找结果
         return studentDao.findAllByGrade(grade_id);
+    }
+
+    public Collection<Student> findAllByNo(String no) throws SQLException {
+        //调用StudentDao类里的findAllByGrade方法返回查找结果
+        return studentDao.findAllByNo(no);
     }
 
     public Student find(Integer id) throws SQLException {

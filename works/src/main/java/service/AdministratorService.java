@@ -29,6 +29,11 @@ public final class AdministratorService {
         return administratorDao.findAll();
     }
 
+    public Collection<Administrator> findAllByNo(String no) throws SQLException {
+        //调用AdministratorDao类里的findAll方法返回查找结果
+        return administratorDao.findAllByNo(no);
+    }
+
     public Administrator find(Integer id) throws SQLException {
         //调用AdministratorDao类里的find方法返回查找结果
         return administratorDao.find(id);

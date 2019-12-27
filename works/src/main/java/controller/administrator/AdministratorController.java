@@ -80,7 +80,7 @@ public class AdministratorController extends HttpServlet {
         if (deleted) {
             message.put("message", "删除成功!");
         } else {
-            message.put("message", "删除失败!");
+            message.put("message", "此条记录已被删除或不存在!");
         }
         //响应message到前端
         response.getWriter().println(message);
@@ -140,14 +140,17 @@ public class AdministratorController extends HttpServlet {
 
         //读取参数id
         String id_str = request.getParameter("id");
+        String no_str = request.getParameter("no");
 
         //创建JSON对象message，以便往前端响应信息
         JSONObject message = new JSONObject();
 
         try {
             //如果id = null, 表示响应所有管理员对象，否则响应id指定的管理员对象
-            if (id_str == null) {
+            if (id_str == null && no_str == null) {
                 responseAdministrators(response);
+            } else if (no_str != null) {
+                responseAdministratorsByNo(no_str, response);
             } else {
                 int id = Integer.parseInt(id_str);
                 responseAdministrator(id, response);
@@ -181,6 +184,17 @@ public class AdministratorController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         //获得所有管理员
         Collection<Administrator> administrators = AdministratorService.getInstance().findAll();
+        String administrators_json = JSON.toJSONString(administrators, SerializerFeature.DisableCircularReferenceDetect);
+
+        //响应administrators_json到前端
+        response.getWriter().println(administrators_json);
+    }
+
+    //响应所有管理员对象
+    private void responseAdministratorsByNo(String no, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        //获得所有管理员
+        Collection<Administrator> administrators = AdministratorService.getInstance().findAllByNo(no);
         String administrators_json = JSON.toJSONString(administrators, SerializerFeature.DisableCircularReferenceDetect);
 
         //响应administrators_json到前端

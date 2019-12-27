@@ -79,7 +79,7 @@ public class StudentController extends HttpServlet {
         if (deleted) {
             message.put("message", "删除成功!");
         } else {
-            message.put("message", "删除失败!");
+            message.put("message", "此条记录已被删除或不存在!");
         }
         //响应message到前端
         response.getWriter().println(message);
@@ -134,17 +134,20 @@ public class StudentController extends HttpServlet {
             throws ServletException, IOException {
         //读取参数id
         String id_str = request.getParameter("id");
+        String no_str = request.getParameter("no");
         String grade_id_str = request.getParameter("grade_id");
 
         //创建JSON对象message，以便往前端响应信息
         JSONObject message = new JSONObject();
         try {
             //如果id = null, 表示响应所有学生对象，否则响应id指定的学生对象
-            if (id_str == null && grade_id_str == null) {
+            if (id_str == null && grade_id_str == null && no_str == null) {
                 responseStudents(response);
             } else if (grade_id_str != null) {
                 int grade_id = Integer.parseInt(grade_id_str);
                 responseStudentByGrade(grade_id, response);
+            } else if (no_str != null) {
+                responseStudentByNo(no_str, response);
             } else {
                 int id = Integer.parseInt(id_str);
                 responseStudent(id, response);
@@ -188,6 +191,16 @@ public class StudentController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         //获得对应的所有学生
         Collection<Student> students = StudentService.getInstance().findAllByGrade(grade_id);
+        String students_json = JSON.toJSONString(students, SerializerFeature.DisableCircularReferenceDetect);
+
+        //响应students_json到前端
+        response.getWriter().println(students_json);
+    }
+
+    private void responseStudentByNo(String no, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        //获得对应的所有学生
+        Collection<Student> students = StudentService.getInstance().findAllByNo(no);
         String students_json = JSON.toJSONString(students, SerializerFeature.DisableCircularReferenceDetect);
 
         //响应students_json到前端
