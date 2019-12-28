@@ -136,25 +136,6 @@ public final class CourseDao {
         return courses;
     }
 
-    public Integer Count(Integer course_id) throws SQLException {
-        int countNum = 0;
-        //加载驱动程序
-        //获得连接对象
-        Connection connection = JdbcHelper.getConn();
-        //创建sql语句，“？”作为占位符
-        String str = "SELECT COURSE_ID, COUNT(*) AS COUNT FROM SC GROUP BY COURSE_ID HAVING COURSE_ID = ?";
-        //创建PreparedStatement接口对象，包装编译后的目标代码（可以设置参数，安全性高）
-        PreparedStatement pstmt = connection.prepareStatement(str);
-        //为预编译的语句参数赋值
-        pstmt.setInt(1, course_id);
-        //执行SQL查询语句并获得结果集对象（游标指向结果集的开头）
-        ResultSet resultSet = pstmt.executeQuery();
-        if (resultSet.next()) {
-            countNum = resultSet.getInt("count");
-        }
-        return countNum;
-    }
-
     public boolean add(Course course) throws SQLException {
         //加载驱动程序
         //获得连接对象
